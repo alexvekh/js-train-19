@@ -32,7 +32,8 @@ console.log("Завдання: 1 ==============================");
 // Виводимо в консоль Об'єкт: Book
 console.log(Book);
 // Виводимо в консоль прототип Об'єкту: Book
-console.log(Object.getPrototypeOf(Book)); //  Виходе: [Object: null prototype] {}, а треба: true
+console.log(Book.hasOwnProperty("title"));
+//console.log(Object.getPrototypeOf(Book)); //  Виходе: [Object: null prototype] {}, а треба: true
 // Викликаємо функцію read об'єкту Book
 Book.read();
 // 2. Наслідування від базового об'єкту Book
@@ -150,7 +151,7 @@ console.log(Object.getOwnPropertyDescriptor(ScienceBook, "info"));
 //Створюємо Textbook та наслідуємо властивості з ScienceBook
 const Textbook = Object.create(ScienceBook);
 (Textbook.read = function () {
-  console.log(`Ви читаєте підручник "${this.title}" від ${this.author}. ${this._info}`); // виводе в info: написана в 1915 році, а треба: Про книгу ${title}: написана в 1915 році
+  console.log(`Ви читаєте підручник "${this.title}" від ${this.author}. Про книгу ${this.title}: ${this._info}`); // виводе в info: написана в 1915 році, а треба: Про книгу ${title}: написана в 1915 році
 }),
   (Textbook.title = "Фізика у Вищій Школі");
 Textbook.author = "Дж. Д. Джонс";
